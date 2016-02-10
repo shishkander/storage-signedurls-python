@@ -122,6 +122,7 @@ class CloudStorageURLSigner(object):
     headers['Content-Type'] = content_type
     headers['Content-Length'] = str(len(data))
     headers['Content-MD5'] = md5_digest
+    headers['Cache-Control'] = 'public, max-age=31536000'
     return self.session.put(base_url, params=query_params, headers=headers,
                             data=data)
 
@@ -182,6 +183,7 @@ def main():
   print '=================='
   r = signer.Get(file_path)
   ProcessResponse(r)
+def some():
   print 'Deleting file...'
   print '================'
   r = signer.Delete(file_path)
